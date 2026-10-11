@@ -16,7 +16,7 @@ public class Product {
     public Long getId() {
         return id;
     }
-    public String getName() {
+    public String getName() { //IMPORTANT Getter removal will drop the field from Json without n error message! Be careful
         return name;
     }
     public double getPrice() {
