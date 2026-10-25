@@ -12,6 +12,17 @@ public class ProductService {
     private List<Product> products = new ArrayList<>();
     private Long nextId = 1L;
 
+    // Tutorial 4: both subclasses go into the SAME List<Product> - no cast needed, because each one IS-A Product
+    public ProductService() {
+        products.add(new DigitalProduct(
+                nextId++, "Clean Code (E-book)", 29.99,
+                "/downloads/clean-code.pdf", 4.2));
+
+        products.add(new PhysicalProduct(
+                nextId++, "27-inch Monitor", 249.99,
+                5.4, "61cm x 41cm x 18cm"));
+    }
+
     public List<Product> getAllProducts() {
         return products;
     }

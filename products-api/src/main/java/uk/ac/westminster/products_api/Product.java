@@ -1,5 +1,16 @@
 package uk.ac.westminster.products_api;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+// Tutorial 4: POST /products takes a Product, so without this Jackson always builds a plain Product
+// and silently drops downloadUrl / weightKg. DEDUCTION picks the subclass from the fields in the JSON
+// (downloadUrl -> DigitalProduct, weightKg -> PhysicalProduct, only id/name/price -> Product).
+@JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION, defaultImpl = Product.class)
+@JsonSubTypes({
+        @JsonSubTypes.Type(DigitalProduct.class),
+        @JsonSubTypes.Type(PhysicalProduct.class)
+})
 public class Product {
     private Long id;
     private String name;
